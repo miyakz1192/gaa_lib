@@ -21,26 +21,36 @@ class EasySSHSCP:
 
         return res_stdout, res_stderr
 
-    def upload(self, src_path, dst_host, dst_path):
+    def upload(self, local_path, remote_host, remote_path):
         with paramiko.SSHClient() as ssh:
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(hostname=easy_sshscp_config.host[dst_host], port=22, username=easy_sshscp_config.user[dst_host], password=easy_sshscp_config.passwd[dst_host])
+            ssh.connect(hostname=easy_sshscp_config.host[remote_host], port=22, username=easy_sshscp_config.user[remote_host], password=easy_sshscp_config.passwd[remote_host])
             # scp clientオブジェクト生成
             with scp.SCPClient(ssh.get_transport()) as scp_module:
                # scpに対してget/putするだけでファイルが取得できる
                #scp.get('xxx.tar.gz','xxx.tar.gz')
-               scp_module.put(src_path, dst_path)
+               scp_module.put(local_path, remote_path)
+
+    def download(self, remote_host, remote_path, local_path):
+        with paramiko.SSHClient() as ssh:
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            ssh.connect(hostname=easy_sshscp_config.host[remote_host], port=22, username=easy_sshscp_config.user[remote_host], password=easy_sshscp_config.passwd[remote_host])
+            # scp clientオブジェクト生成
+            with scp.SCPClient(ssh.get_transport()) as scp_module:
+               # scpに対してget/putするだけでファイルが取得できる
+               #scp.get('xxx.tar.gz','xxx.tar.gz')
+               scp_module.get(remote_path, local_path)
         
 
 #mini test
 if __name__ == "__main__":
     ssh = EasySSHSCP()
     print("INFO: mini test")
-    print("host %s" % (easy_sshscp_config.host["aaa"]))
-    print("user %s" % (easy_sshscp_config.user["aaa"]))
+    print("host %s" % (easy_sshscp_config.host["ssd"]))
+    print("user %s" % (easy_sshscp_config.user["ssd"]))
 
-    stdout , stderr = ssh.ssh("aaa", "hostname")
+    stdout , stderr = ssh.ssh("ssd", "hostname")
     print(stdout)
     print(stderr)
 
-    ssh.upload("/home/a/gaa_lib/net/easy_sshscp.py" , "aaa", "/tmp/easy_sshscp.py") 
+    ssh.upload("/home/a/gaa_lib/net/easy_sshscp.py" , "ssd", "/tmp/easy_sshscp.py") 
