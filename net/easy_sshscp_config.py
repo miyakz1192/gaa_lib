@@ -8,6 +8,10 @@ passwd = defaultdict()
 
 ### CONFIGURABLE PART START ###
 # sample
-#host["aaa"] = ""
-#user["aaa"] = ""
-#passwd["aaa"] = ""
+host["ssd"]   = ""
+user["ssd"]   = ""
+passwd["ssd"] = ""
+
+host["resnet34"]   = ""
+user["resnet34"]   = ""
+passwd["resnet34"] = ""
