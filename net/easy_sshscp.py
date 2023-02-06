@@ -17,7 +17,7 @@ class EasySSHSCP:
             for o in stdout:
                 res_stdout += o
             for e in stderr:
-                res_stderr += o
+                res_stderr += e
 
         return res_stdout, res_stderr
 
