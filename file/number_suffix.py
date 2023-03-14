@@ -5,7 +5,7 @@ import os
 from file_common import *
 
 class NumberSuffixFile:
-    def __init__(self, directory_path):
+    def __init__(self, directory_path=None):
         self.directory_path = directory_path
         self.numbers = []
 
@@ -19,9 +19,13 @@ class NumberSuffixFile:
             self.numbers.append(int(n))
 
     def max(self):
+        if len(self.numbers) == 0:
+            return 0
         return max(self.numbers)
 
     def next(self):
+        if self.max() == 0:
+            return 0
         return self.max() + 1
 
 
