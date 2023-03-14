@@ -33,6 +33,10 @@ gaa_dl_services = [GAA_SSD, GAA_RESNET34]
 gaa_best_weight_file_name = "best_weight.pth"
 gaa_data_set_file_name = "data_set.tar.gz"
 
-#using NumberSuffixFile class
-GAA_AUTO_GEN_DIR_CLOSE_TRUE = "./images/auto_gen/close/true/"
+
+GAA_HOME_DIR = "/home/a/game_ad_automation/"
+
+GAA_AUTO_GEN_DIR             = "./images/auto_gen/"
+GAA_AUTO_GEN_DIR_CLOSE_TRUE  = "./images/auto_gen/close/true/"
 GAA_AUTO_GEN_DIR_CLOSE_FALSE = "./images/auto_gen/close/false/"
+
