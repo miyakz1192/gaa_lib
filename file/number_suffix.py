@@ -15,6 +15,8 @@ class NumberSuffixFile:
         self.numbers = []
         for i in glob.glob(self.directory_path + "/*"):
             e = os.path.basename(i).split("_")
+            if len(e) < 2:
+                continue
             n = remove_file_ext(e[len(e)-1])
             self.numbers.append(int(n))
 
